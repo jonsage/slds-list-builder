@@ -1,0 +1,47 @@
+<aura:component>
+    
+    <aura:attribute name="data" type="List" default="[]" />
+    <aura:attribute name="columns" type="List" default="[]" />
+    <aura:attribute name="selected" type="List" default="[]" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    
+    <div>
+
+        <table role="grid" class="slds-table slds-table_bordered slds-no-row-hover slds-scrollable_none">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th scope="col"></th>
+
+                    <aura:iteration items="{!v.columns}" var="column">
+                        <th aria-label="{!column.label}" class="{!if(column.cellAttributes &amp;&amp; column.cellAttributes.alignment, 'slds-text-align_' + column.cellAttributes.alignment, '')}" scope="col" style="{!if(column.initialWidth, 'width:' + column.initialWidth + 'px;')}">
+                            <div class="slds-truncate slds-text-title_caps slds-p-vertical_xx-small " title="{!column.label}">{!column.label}</div>
+                        </th>
+                    </aura:iteration>
+                </tr>
+            </thead>
+            <tbody>
+                <aura:iteration items="{!v.data}" var="row" indexVar="index">
+                    <tr class="slds-hint-parent">
+                        <td role="gridcell" class="slds-text-align_right">
+                            <div class="slds-checkbox_add-button">
+                                <input type="checkbox" class="slds-assistive-text" id="{!globalId + '_checkbox_' + index}" value="{!row.id != undefined ? row.id : index}" checked="{!row.selected}" onchange="{!c.updateSelected}" />
+                                <label for="{!globalId + '_checkbox_' + index}" class="slds-checkbox_faux">
+                                    <span class="slds-assistive-text">Select item {!index}</span>
+                                </label>
+                            </div>
+                        </td>
+
+                        <aura:iteration items="{!v.columns}" var="column">
+                            <td role="gridcell" class="{!if(column.cellAttributes &amp;&amp; column.cellAttributes.alignment, 'slds-text-align_' + column.cellAttributes.alignment, '')}">
+                                <s2cor:ListBuilder_Cell row="{!row}" property="{!column.fieldName}" />
+                            </td>
+                        </aura:iteration>
+                    </tr>
+                </aura:iteration>
+            </tbody>
+        </table>
+        
+    </div>
+    
+</aura:component>
