@@ -1,0 +1,9 @@
+.THIS tr > :last-child {
+    padding-right:1rem !important;
+}
+
+.THIS tr > :first-child {
+    padding-left:1rem !important;
+    line-height:0;
+    width:1rem;
+}
