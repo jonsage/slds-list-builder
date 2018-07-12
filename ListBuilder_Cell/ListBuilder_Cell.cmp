@@ -1,0 +1,9 @@
+<aura:component>
+    <aura:attribute name="row" type="Object" default="{}" />
+    <aura:attribute name="property" type="String" required="true" />
+    <aura:attribute name="value" type="Object" access="private" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    
+    <div class="slds-truncate">{!v.value}</div>
+</aura:component>
