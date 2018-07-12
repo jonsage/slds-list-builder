@@ -34,7 +34,7 @@
 
                         <aura:iteration items="{!v.columns}" var="column">
                             <td role="gridcell" class="{!if(column.cellAttributes &amp;&amp; column.cellAttributes.alignment, 'slds-text-align_' + column.cellAttributes.alignment, '')}">
-                                <s2cor:ListBuilder_Cell row="{!row}" property="{!column.fieldName}" />
+                                <c:ListBuilder_Cell row="{!row}" property="{!column.fieldName}" />
                             </td>
                         </aura:iteration>
                     </tr>
